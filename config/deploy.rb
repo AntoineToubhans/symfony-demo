@@ -4,10 +4,10 @@ lock '3.4.0'
 set :application, 'demo'
 set :repo_url, 'git@github.com:AntoineToubhans/symfony-demo.git'
 
-set :ssh_user, 'toubi'
-server '62.4.23.202', user: fetch(:ssh_user), roles: %w{web app db}
+#set :ssh_user, 'ubuntu'
+#server '62.4.23.202', user: fetch(:ssh_user), roles: %w{web app db}
 
-set :scm, :git
+# set :scm, :git
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
