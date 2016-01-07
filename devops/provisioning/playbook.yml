@@ -1,0 +1,23 @@
+---
+
+- name: Provisioning demo
+  hosts: all
+  sudo: true
+  vars_files:
+    - vars/main.yml
+    - vars/ubuntu-xdebug.yml
+
+  roles:
+    - ubuntu-apt
+    - create-www-data-user
+    - ubuntu-php
+    - composer
+    - ubuntu-symfony-nginx
+    - ubuntu-mysql
+
+- name: Vagrant provisioning
+  hosts: vagrant
+  sudo: yes
+  gather_facts: true
+  roles:
+   - ubuntu-xdebug
