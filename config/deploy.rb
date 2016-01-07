@@ -1,8 +1,13 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
-set :application, 'my_app'
-set :repo_url, 'https://github.com/AntoineToubhans/symfony-demo.git'
+set :application, 'demo'
+set :repo_url, 'git@github.com:AntoineToubhans/symfony-demo.git'
+
+set :ssh_user, 'toubi'
+server '62.4.23.202', user: fetch(:ssh_user), roles: %w{web app db}
+
+set :scm, :git
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -34,15 +39,30 @@ set :repo_url, 'https://github.com/AntoineToubhans/symfony-demo.git'
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-namespace :deploy do
+# Default value for :linked_files is []
+set :linked_files, [fetch(:app_config_path) + "/parameters.yml"]
 
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
+# Default value for linked_dirs is []
+set :linked_dirs, [fetch(:log_path), "vendor"]
+
+task :migrate do
+  invoke 'symfony:console', 'doctrine:migrations:migrate', '--no-interaction'
+end
+
+namespace :deploy do
+  after :updated, :migrate
+  after :updated, 'symfony:assetic:dump'
+end
+
+#namespace :deploy do
+
+#  after :restart, :clear_cache do
+#    on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
       # within release_path do
       #   execute :rake, 'cache:clear'
       # end
-    end
-  end
+#    end
+#  end
 
-end
+#end

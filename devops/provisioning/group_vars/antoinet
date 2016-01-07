@@ -1,0 +1,9 @@
+---
+
+dev_env: true
+mysql_databases:
+  - name: antoinet
+
+mysql_user:
+  - name: antoinet
+    password: antoinet
