@@ -4,8 +4,7 @@
 
 {% block main %}
     {% for post in posts %}
-        <article class="post">
-            <h3>Title</h3>
+        <article class="post">            
             <h2>
                 <a href="{{ path('blog_post', { slug: post.slug }) }}">
                     {{ post.title }}
