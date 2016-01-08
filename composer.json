@@ -21,6 +21,7 @@
         "leafo/scssphp"                        : "~0.1.5",
         "patchwork/jsqueeze"                   : "~1.0",
         "sensio/distribution-bundle"           : "~5.0",
+        "sensio/generation-bundle"             : "*",
         "sensio/framework-extra-bundle"        : "~3.0",
         "symfony/assetic-bundle"               : "~2.6",
         "symfony/monolog-bundle"               : "~2.7",
