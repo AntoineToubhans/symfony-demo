@@ -8,4 +8,3 @@ set :ssh_user, 'ubuntu'
 server '62.4.23.202', user: fetch(:ssh_user)
 
 
-
